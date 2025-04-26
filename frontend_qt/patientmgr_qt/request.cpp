@@ -3,6 +3,9 @@ namespace PatientMgr{
 
 int Request::make(QUrl url, Requests::RequestType type, const QByteArray* data)
 {
+    if(buffer)
+        buffer->clear();
+
     QNetworkRequest req(url);
     
     req.setAttribute(QNetworkRequest::RedirectPolicyAttribute, QNetworkRequest::NoLessSafeRedirectPolicy);
