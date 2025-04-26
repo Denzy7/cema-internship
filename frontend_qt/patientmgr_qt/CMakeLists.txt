@@ -42,6 +42,7 @@ else()
             ${PROJECT_SOURCES}
             programmes.h programmes.cpp programmes.ui
             request.h request.cpp
+            patients.h patients.cpp
         )
     endif()
 endif()

@@ -1,8 +1,10 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
-#include "programmes.h"
-#include <QMessageBox>
 
+#include "programmes.h"
+#include "patients.h"
+
+#include <QMessageBox>
 
 #include <QDebug>
 
@@ -23,18 +25,33 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+int MainWindow::CheckConnectMessage()
+{
+    if(connected)
+        return 1;
+
+    QMessageBox::critical(this,
+            "Not connected",
+            "Enter address and port and click connect"
+            );
+    return 0;
+}
 void MainWindow::on_btnProgram_clicked()
 {
-    if(!connected)
-    {
-        QMessageBox::critical(this,
-                "Not connected",
-                "Enter address and port and click connect"
-                );
+    if(!CheckConnectMessage())
         return;
-    }
+
     Programmes programmes(this);
     programmes.exec();
+}
+
+void MainWindow::on_btnPatient_clicked()
+{
+    if(!CheckConnectMessage())
+        return;
+    
+    Patients patients(this);
+    patients.exec();
 }
 
 void MainWindow::on_actionAbout_triggered()

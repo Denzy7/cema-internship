@@ -50,9 +50,9 @@ private slots:
     void on_tbl_SelectionChanged(const QItemSelection &selected, const QItemSelection &deselected);
 
 
-    void OnGetProgrammes(QByteArray* data, int code);
-    void OnPostProgram(QByteArray* data, int code);
-    void OnPutProgram(QByteArray* data, int code);
+    void OnGetProgrammes(QByteArray* data, int code, PatientMgr::Request* req);
+    void OnPostProgram(QByteArray* data, int code, PatientMgr::Request* req);
+    void OnPutProgram(QByteArray* data, int code, PatientMgr::Request* req);
 
 private:
     Ui::Programmes *ui;

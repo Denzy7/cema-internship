@@ -24,6 +24,8 @@ public:
 
 private slots:
     void on_btnProgram_clicked();
+    void on_btnPatient_clicked();
+
     void on_actionQuit_triggered();
     void on_actionAbout_triggered();
     void on_actionAbout_Qt_triggered();
@@ -32,6 +34,7 @@ private slots:
     void OnConnected(QByteArray* data, int code);
 
 private:
+    int CheckConnectMessage();
     Ui::MainWindow *ui;
     PatientMgr::Request checkconnected;
 };

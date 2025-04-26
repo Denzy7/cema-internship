@@ -42,7 +42,7 @@ void Request::OnHttpFinish()
     {
         code = vcode.toInt();
     }
-    emit OnRequestSuccess(buffer, code);
+    emit OnRequestSuccess(buffer, code, this);
 }
 
 void Request::freeBuffer()

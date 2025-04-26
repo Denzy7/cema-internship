@@ -32,7 +32,7 @@ class Request : public QObject{
         int make(QUrl url, Requests::RequestType type = Requests::RequestType::GET, const QByteArray* data = nullptr);
 
     signals:
-        void OnRequestSuccess(QByteArray* data, int httpcode);
+        void OnRequestSuccess(QByteArray* data, int httpcode, Request* request);
 };
 
 }

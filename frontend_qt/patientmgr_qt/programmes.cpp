@@ -135,7 +135,7 @@ void Programmes::on_btnAdd_clicked()
     ui->lblStatus->setText("Sending to server...");
 }
 
-void Programmes::OnGetProgrammes(QByteArray* data, int code)
+void Programmes::OnGetProgrammes(QByteArray* data, int code, PatientMgr::Request* req)
 {
     if(code < 200 || code >= 300)
     {
@@ -160,7 +160,7 @@ void Programmes::OnGetProgrammes(QByteArray* data, int code)
             QString("Fetched rows: %1").arg(model->rowCount()));
 }
 
-void Programmes::OnPostProgram(QByteArray* data, int code)
+void Programmes::OnPostProgram(QByteArray* data, int code, PatientMgr::Request* req)
 {
     ui->btnAdd->setEnabled(true);
 
@@ -176,7 +176,7 @@ void Programmes::OnPostProgram(QByteArray* data, int code)
     ui->lblStatus->setText("Success");
     on_btnRefresh_clicked();
 }
-void Programmes::OnPutProgram(QByteArray* data, int code)
+void Programmes::OnPutProgram(QByteArray* data, int code, PatientMgr::Request* req)
 {
     ui->btnEdit->setEnabled(true);
 
