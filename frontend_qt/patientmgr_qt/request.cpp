@@ -44,6 +44,11 @@ void Request::OnHttpFinish()
     emit OnRequestSuccess(buffer, code);
 }
 
+void Request::freeBuffer()
+{
+    if(buffer)
+        delete buffer;
+}
 }
 
 //#include "request.moc"

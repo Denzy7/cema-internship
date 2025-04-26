@@ -28,6 +28,7 @@ class Request : public QObject{
         QScopedPointer<QNetworkReply, QScopedPointerDeleteLater> reply;
 
     public:
+        void freeBuffer();
         int make(QUrl url, Requests::RequestType type = Requests::RequestType::GET, const QByteArray* data = nullptr);
 
     signals:
