@@ -14,9 +14,12 @@ github actions ci and release hosts a build of the qt front end for windows and 
 
 # clone 
 ```
-# you can skip the --recursive, it's only if building on/for msys2 or mingw
+# you can skip the --recursive, it's only if building on/for msys2/mingw
 git clone --recursive --depth 1 https://github.com/Denzy7/cema-internship
 cd cema-internship 
+
+# you can also skip submodules if not building for/on msys2/mingw
+git submodule update --init --recursive --depth 1
 ```
 
 # building the qt frontend

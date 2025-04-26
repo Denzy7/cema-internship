@@ -2,6 +2,8 @@ cmake_minimum_required(VERSION 3.16)
 
 project(patientmgr_qt VERSION 0.1 LANGUAGES CXX)
 
+set(mingw_copylibs_DIR "${patientmgr_qt_SOURCE_DIR}/../../deps/mingw-copylibs")
+include(${mingw_copylibs_DIR}/mingw_copylibs.cmake)
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
@@ -66,6 +68,38 @@ install(TARGETS patientmgr_qt
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
 )
+if(MINGW)
+
+    mingw_copylibs_install(${CMAKE_INSTALL_BINDIR}/patientmgr_qt.exe)
+    foreach(pfx ${CMAKE_SYSTEM_PREFIX_PATH})
+        # assumes we have winpthread, may not be case but it's always there
+        if(EXISTS "${pfx}/bin/libwinpthread-1.dll")
+            if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
+                set(pluginsdir
+                    lib/qt6/plugins
+                    share/qt6/plugins
+                )
+            else()
+                set(pluginsdir 
+                    lib/qt5/plugins
+                    share/qt5/plugins
+                    lib/qt/plugins
+                    share/qt/plugins
+                )
+            endif()
+
+            foreach(plugindir ${pluginsdir})
+                if(EXISTS "${pfx}/${plugindir}")
+                    install(DIRECTORY 
+                        ${pfx}/${plugindir}/platforms
+                        ${pfx}/${plugindir}/styles
+                        DESTINATION ${CMAKE_INSTALL_BINDIR}/${plugindir}
+                    )
+                endif()
+            endforeach()
+        endif()
+    endforeach()
+endif()
 
 if(QT_VERSION_MAJOR EQUAL 6)
     qt_finalize_executable(patientmgr_qt)
