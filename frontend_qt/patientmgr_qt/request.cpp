@@ -9,6 +9,7 @@ int Request::make(QUrl url, Requests::RequestType type, const QByteArray* data)
     QNetworkRequest req(url);
     
     req.setAttribute(QNetworkRequest::RedirectPolicyAttribute, QNetworkRequest::NoLessSafeRedirectPolicy);
+    req.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
 
     reply.reset( qnam.get(req) );
 
