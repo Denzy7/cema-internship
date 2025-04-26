@@ -3,11 +3,16 @@ namespace PatientMgr{
 
 int Request::make(QUrl url, Requests::RequestType type, const QByteArray* data)
 {
-    reply.reset( qnam.get(QNetworkRequest(url)) );
+    QNetworkRequest req(url);
+    
+    req.setAttribute(QNetworkRequest::RedirectPolicyAttribute, QNetworkRequest::NoLessSafeRedirectPolicy);
+
+    reply.reset( qnam.get(req) );
+
     if(type == Requests::RequestType::POST)
-        reply.reset( qnam.post(QNetworkRequest(url), *data) );
+        reply.reset( qnam.post(req, *data) );
     else if(type == Requests::RequestType::PUT)
-        reply.reset( qnam.put(QNetworkRequest(url), *data) );
+        reply.reset( qnam.put(req, *data) );
 
 
     connect(reply.get(), &QIODevice::readyRead, this, &Request::OnHttpReady);
