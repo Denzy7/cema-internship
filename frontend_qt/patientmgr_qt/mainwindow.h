@@ -19,6 +19,8 @@ public:
     ~MainWindow();
 
     bool connected = false;
+    QString baseurl;
+    int port;
 
 private slots:
     void on_btnProgram_clicked();

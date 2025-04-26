@@ -19,6 +19,7 @@ MainWindow::MainWindow(QWidget *parent)
 
 MainWindow::~MainWindow()
 {
+    checkconnected.freeBuffer();
     delete ui;
 }
 
@@ -53,13 +54,15 @@ void MainWindow::on_btnConnect_clicked()
 {
     connected = false;
     ui->statusbar->showMessage("Connecting...");
+
+    baseurl = ui->ledAddr->text().trimmed() + "/patientmgr";
+    port = ui->sbxPort->value();
+
     QUrl url = 
         QUrl::fromUserInput(
-                QString("%1/patientmgr/check/").arg(
-                    ui->ledAddr->text().trimmed()
-                    )
+                QString("%1/check").arg(baseurl)
                 );
-    url.setPort(ui->sbxPort->value());
+    url.setPort(port);
     if(!url.isValid())
     {
         QMessageBox::critical(this,
@@ -80,6 +83,5 @@ void MainWindow::OnConnected(QByteArray* data, int code)
     else
         ui->statusbar->showMessage("Connection failed!");
 
-    delete data;
 }
 

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>625</width>
-    <height>430</height>
+    <width>562</width>
+    <height>527</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,7 +17,7 @@
    <item>
     <widget class="QLineEdit" name="ledSearch">
      <property name="placeholderText">
-      <string>Search...</string>
+      <string>Search by name...</string>
      </property>
      <property name="clearButtonEnabled">
       <bool>true</bool>
@@ -65,6 +65,9 @@
              <verstretch>0</verstretch>
             </sizepolicy>
            </property>
+           <property name="alignment">
+            <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+           </property>
           </widget>
          </item>
         </layout>
@@ -81,7 +84,17 @@
         </widget>
        </item>
        <item>
+        <widget class="QPushButton" name="btnEdit">
+         <property name="text">
+          <string>Edit</string>
+         </property>
+        </widget>
+       </item>
+       <item>
         <widget class="QPushButton" name="btnDelete">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
          <property name="text">
           <string>Delete</string>
          </property>
@@ -106,7 +119,33 @@
     </layout>
    </item>
    <item>
-    <widget class="QTableView" name="tblProgrammes"/>
+    <widget class="QTableView" name="tblProgrammes">
+     <property name="editTriggers">
+      <set>QAbstractItemView::NoEditTriggers</set>
+     </property>
+     <property name="selectionMode">
+      <enum>QAbstractItemView::SingleSelection</enum>
+     </property>
+     <property name="selectionBehavior">
+      <enum>QAbstractItemView::SelectRows</enum>
+     </property>
+     <property name="sortingEnabled">
+      <bool>true</bool>
+     </property>
+     <attribute name="verticalHeaderVisible">
+      <bool>false</bool>
+     </attribute>
+     <attribute name="verticalHeaderHighlightSections">
+      <bool>false</bool>
+     </attribute>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLabel" name="lblStatus">
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
    </item>
   </layout>
  </widget>
