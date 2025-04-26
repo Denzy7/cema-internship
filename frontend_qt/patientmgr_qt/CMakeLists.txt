@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.16)
 
-project(patientmgr_qt VERSION 0.1 LANGUAGES CXX)
+project(patientmgr_qt VERSION 0.2 LANGUAGES CXX)
 
 set(mingw_copylibs_DIR "${patientmgr_qt_SOURCE_DIR}/../../deps/mingw-copylibs")
 include(${mingw_copylibs_DIR}/mingw_copylibs.cmake)

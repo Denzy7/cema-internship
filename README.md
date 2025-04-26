@@ -67,3 +67,18 @@ vpy manage.py runserver 8000
 #                                        #
 ##########################################
 ```
+
+# limitations
+as of the submission on 26th April 2025, 23:59 EAT, the qt front-end is read only for patient data. django admin is needed to add or edit patient data. however it can read/write programmes data with no issue
+
+# deployment
+it has been deployed on my aws instance at unencrypted `http://cemainternship.denzy.net` port `80` as of 26th April, 2025 until the instance get taken down after a few months depending on availability. 
+
+use this address in the qt frontend
+
+# demo
+- launch qt frontend
+- add several programmes
+- open django admin on your browser 
+- add some patients and their enrolled programmes
+- view data on the qt frontend
